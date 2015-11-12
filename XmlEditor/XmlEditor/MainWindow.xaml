@@ -1,0 +1,16 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:XmlEditor="clr-namespace:XmlEditor"
+        xmlns:Views="clr-namespace:XmlEditor.XmlEditorControl.Views"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+
+
+
+        <Views:UserControl1 HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+
+
+
+    </Grid>
+</Window>
