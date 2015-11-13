@@ -79,5 +79,22 @@ namespace XmlEditor.XmlEditorControl.Views
                     NestedControlPlacement(spn, xnd);
             }
         }
+
+        private void collapseButtonClick(object sender, RoutedEventArgs e)
+        {
+            TextBlock tb = (TextBlock)sender;
+            if (tb.Text == "-")
+            {
+                tb.Text = "+";
+                Grid g = (Grid)tb.Parent;
+                g.RowDefinitions[1].MaxHeight = 0;
+            }
+            else
+            {
+                tb.Text = "-";
+                Grid g = (Grid)tb.Parent;
+                g.RowDefinitions[1].MaxHeight = double.PositiveInfinity;
+            }
+        }
     }
 }
