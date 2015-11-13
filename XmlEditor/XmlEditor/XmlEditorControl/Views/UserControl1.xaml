@@ -12,6 +12,6 @@
                  Text="{Binding XmlFile.RootName, UpdateSourceTrigger=PropertyChanged}" 
                  VerticalAlignment="Top" Width="280"/>
         <Button Content="OK" HorizontalAlignment="Left" Height="21" Margin="209,269,0,0" VerticalAlignment="Top" Width="81"
-                Command="{Binding UpdateCommand}"/>
+                Command="{Binding UpdateCommand}" BorderThickness="0"/>
     </Grid>
 </UserControl>

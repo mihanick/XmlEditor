@@ -2,6 +2,7 @@
 
 namespace XmlEditor.XmlEditorControl.Views
 {
+    using System.Windows;
     using System.Windows.Controls;
     using System.Xml;
     using XmlEditor.XmlEditorControl.ViewModels;
@@ -29,21 +30,50 @@ namespace XmlEditor.XmlEditorControl.Views
 
         private void NestedControlPlacement(StackPanel sp, XmlNode xn)
         {
-            StackPanel spn = new StackPanel();
-            spn.Margin = new System.Windows.Thickness(4,0,0,0);
-            sp.Children.Add(spn);
-
             if (xn.LocalName == "#text")
             {
                 TextBox tb = new TextBox();
                 tb.Text = xn.Value;
-                spn.Children.Add(tb);
+                sp.Children.Add(tb);
             }
             else
             {
+                Grid g = new Grid();
+                ColumnDefinition cd1 = new ColumnDefinition();
+                cd1.Width = new System.Windows.GridLength(12);
+
+                g.ColumnDefinitions.Add(cd1);
+                g.ColumnDefinitions.Add(new ColumnDefinition());
+                g.RowDefinitions.Add(new RowDefinition());
+                g.RowDefinitions.Add(new RowDefinition());
+
+                TextBlock collapseButton = new TextBlock();
+                collapseButton.Text = "-";
+                collapseButton.MouseUp += collapseButtonClick;
+                
+                //spn.Children.Add(collapseButton);
+                
+                collapseButton.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+
                 TextBlock blk = new TextBlock();
                 blk.Text = xn.Name;
-                spn.Children.Add(blk);
+                blk.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+                
+                //spn.Children.Add(blk);
+
+                g.Children.Add(collapseButton);
+                g.Children.Add(blk);
+                collapseButton.SetValue(Grid.ColumnProperty, 0);
+                blk.SetValue(Grid.ColumnProperty, 1);
+
+                sp.Children.Add(g);
+
+                StackPanel spn = new StackPanel();
+                //spn.Margin = new System.Windows.Thickness(4, 0, 0, 0);
+                g.Children.Add(spn);
+                spn.SetValue(Grid.ColumnProperty, 1);
+                spn.SetValue(Grid.RowProperty, 1);
+
 
                 foreach (XmlNode xnd in xn.ChildNodes)
                     NestedControlPlacement(spn, xnd);
